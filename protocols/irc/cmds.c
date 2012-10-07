@@ -502,6 +502,39 @@ int irc_cmd_service(struct irc_conn *irc, const char *cmd, const char *target, c
 	return 0;
 }
 
+int irc_cmd_slap(struct irc_conn *irc, const char *cmd, const char *target, const char **args)
+{
+	if (!args || !args[0])
+		return 0;
+
+	if (!irc_ischannel(target)) /* not a channel, punt */
+		return 0;
+
+	static const char *fmt[] =
+	{
+		"slaps %s around a bit with a large trout",
+		"slaps %s around a bit with a chainsaw",
+		"slaps %s around a lot with THE BFG9000",
+		"slaps %s while riding a motherfucking dragon",
+		"slaps %s with a glove. I demand satisfaction!",
+		"slaps %s out of this plane of existance",
+		"slaps %s around a bit with geordi",
+		"slaps %s around a bit with java",
+		"slaps %s without hesitation",
+		"slaps %s with honor and blood"
+	};
+
+	int selectedFmt = g_random_int_range(0, sizeof(fmt)/sizeof(fmt[0]));
+	char *sargs[1] = { malloc(strlen(fmt[selectedFmt]) + strlen(args[0]) + 10) };
+
+	sprintf(sargs[0], fmt[selectedFmt], args[0]);
+	int res = irc_cmd_ctcp_action(irc, cmd, target, sargs);
+
+	free(sargs[0]);
+
+	return res;
+}
+
 int irc_cmd_time(struct irc_conn *irc, const char *cmd, const char *target, const char **args)
 {
 	char *buf;

@@ -153,6 +153,7 @@ static struct _irc_user_cmd {
 	{ "quit", ":", irc_cmd_quit, N_("quit [message]:  Disconnect from the server, with an optional message.") },
 	{ "quote", "*", irc_cmd_quote, N_("quote [...]:  Send a raw command to the server.") },
 	{ "remove", "n:", irc_cmd_remove, N_("remove &lt;nick&gt; [message]:  Remove someone from a room. You must be a channel operator to do this.") },
+	{ "slap", "n", irc_cmd_slap, N_("slap &lt;nickname&gt;:  Slap somebody") },
 	{ "time", "", irc_cmd_time, N_("time: Displays the current local time at the IRC server.") },
 	{ "topic", ":", irc_cmd_topic, N_("topic [new topic]:  View or change the channel topic.") },
 	{ "umode", ":", irc_cmd_mode, N_("umode &lt;+|-&gt;&lt;A-Za-z&gt;:  Set or unset a user mode.") },
