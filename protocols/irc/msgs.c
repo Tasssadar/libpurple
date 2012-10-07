@@ -1033,6 +1033,10 @@ void irc_msg_kick(struct irc_conn *irc, const char *name, const char *from, char
 		g_free(buf);
 	}
 
+	// auto re-join
+	const char *jargs[2] = { args[0], NULL };
+	irc_cmd_join(irc, "join", NULL, jargs);
+
 	g_free(nick);
 	return;
 }
